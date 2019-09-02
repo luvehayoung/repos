@@ -2,7 +2,10 @@
     <h1>programmers 과제 테스트 템플릿 - Django</h1>
     <p>Happy Coding!</p>
     {% for do in todos %}
-      <h4>{{do.title}}</h4>
+      <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
+      <a href="{% url 'editTodo' pk=do.pk %}">수정하기</a>
+      <a href="{% url 'deleteTodo' pk=do.pk %}">삭제하기</a>
+      <br>
     {% endfor %}
     <a href="{% url 'createTodo' %}">make a new todo list</a>
 </html>
