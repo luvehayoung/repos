@@ -4,4 +4,5 @@
     {% for do in todos %}
       <h4>{{do.title}}</h4>
     {% endfor %}
+    <a href="{% url 'createTodo' %}">make a new todo list</a>
 </html>

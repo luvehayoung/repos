@@ -1,0 +1,8 @@
+<div class="container">
+    <form method="POST" class="was-validated" enctype="multipart/form-data" novalidate>{% csrf_token %}
+
+        {{ form.as_p }}
+        <button type="submit" name = "submitButton">Save</button>
+
+    </form>
+</div>
