@@ -8,4 +8,6 @@ urlpatterns = [
     path('todo/view/<int:pk>', views.viewTodo, name = 'viewTodo'),
     path('todo/edit/<int:pk>', views.editTodo, name='editTodo'),
     path('todo/delete/<int:pk>', views.deleteTodo, name='deleteTodo'),
+    path('todo/done/<int:pk>', views.doneTodo, name='doneTodo'),
+    path('todo/back/<int:pk>', views.backTodo, name='backTodo'),
 ]

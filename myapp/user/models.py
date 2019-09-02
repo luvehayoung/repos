@@ -7,9 +7,14 @@ class User(models.Model):
     email = models.EmailField()
 
 class Todo(models.Model):
+    status_type = (
+        ('on process', 'on process'),
+        ('done', 'done'),
+    )
     title = models.CharField(max_length=100)
     content = models.TextField()
     due_date = models.DateField(("Date"), default=datetime.date.today)
+    status = models.TextField(choices=status_type, default='on process')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

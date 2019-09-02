@@ -27,6 +27,7 @@ def editTodo(request, pk):
     if request.method == "POST":
         form = TodoForm(request.POST, instance=todo)
         if form.is_valid():
+            todo = form.save(commit=False)
             todo = form.save()
             return redirect('viewTodo', pk=todo.pk)
     else:
@@ -36,4 +37,16 @@ def editTodo(request, pk):
 def deleteTodo(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
     todo.delete()
+    return redirect('index')
+
+def doneTodo(request, pk):
+    todo = get_object_or_404(Todo, pk=pk)
+    todo.status = "done"
+    todo.save()
+    return redirect('index')
+
+def backTodo(request, pk):
+    todo = get_object_or_404(Todo, pk=pk)
+    todo.status = "on process"
+    todo.save()
     return redirect('index')

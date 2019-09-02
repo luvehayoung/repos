@@ -3,8 +3,14 @@
     <p>Happy Coding!</p>
     {% for do in todos %}
       <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
+      <a href="{% url 'viewTodo' pk=do.pk %}">{{do.status}}</a>
       <a href="{% url 'editTodo' pk=do.pk %}">수정하기</a>
       <a href="{% url 'deleteTodo' pk=do.pk %}">삭제하기</a>
+      {% if do.status|stringformat:"s" == 'on process' %}
+        <a href="{% url 'doneTodo' pk=do.pk %}">완료</a>
+      {% else %}
+        <a href="{% url 'backTodo' pk=do.pk %}">완료 취소하기</a>  
+      {% endif %}
       <br>
     {% endfor %}
     <a href="{% url 'createTodo' %}">make a new todo list</a>
