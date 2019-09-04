@@ -3,11 +3,11 @@ from .models import Todo
 
 class DateInput(forms.DateInput):
     input_type = 'date'
-    
+
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields = ('title', 'content', 'due_date')
+        fields = ('title', 'content', 'due_date', 'priority')
         widgets = {
             'due_date': DateInput(attrs={'type': 'date'})
         }

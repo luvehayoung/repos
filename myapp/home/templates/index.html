@@ -1,17 +1,89 @@
 <html>
     <h1>programmers 과제 테스트 템플릿 - Django</h1>
     <p>Happy Coding!</p>
-    {% for do in todos %}
+
+    <div>색깔태그 중요 - 매우중요(빨간), 보통(노랑), 기간 연장 가능(파란색) </div>
+
+    <div>
+      search schcedule by date
+
+    </div>
+
+    <div>
+      <h2>overdue</h2>
+      {% for do in overdue %}
+        <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
+        <a href="{% url 'viewTodo' pk=do.pk %}">{{do.status}}</a>
+        <a href="{% url 'viewTodo' pk=do.pk %}">
+          {% if do.priority|stringformat:"s" == '1' %}
+            urgent
+          {% elif do.priority|stringformat:"s" == '2' %}
+            average
+          {% else %}
+            flexible
+          {% endif %}
+        </a>
+        <a href="{% url 'editTodo' pk=do.pk %}">수정하기</a>
+        <a href="{% url 'deleteTodo' pk=do.pk %}">삭제하기</a>
+        {% if do.status|stringformat:"s" == 'on process' %}
+          <a href="{% url 'doneTodo' pk=do.pk %}">완료</a>
+        {% else %}
+          <a href="{% url 'backTodo' pk=do.pk %}">완료 취소하기</a>
+        {% endif %}
+        <br>
+      {% endfor %}
+    </div>
+
+    <div>
+      <h2>due today</h2>
+      {% for do in today %}
+        <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
+        <a href="{% url 'viewTodo' pk=do.pk %}">{{do.status}}</a>
+        <a href="{% url 'viewTodo' pk=do.pk %}">
+          {% if do.priority|stringformat:"s" == '1' %}
+            urgent
+          {% elif do.priority|stringformat:"s" == '2' %}
+            average
+          {% else %}
+            flexible
+          {% endif %}
+        </a>
+        <a href="{% url 'editTodo' pk=do.pk %}">수정하기</a>
+        <a href="{% url 'deleteTodo' pk=do.pk %}">삭제하기</a>
+        {% if do.status|stringformat:"s" == 'on process' %}
+          <a href="{% url 'doneTodo' pk=do.pk %}">완료</a>
+        {% else %}
+          <a href="{% url 'backTodo' pk=do.pk %}">완료 취소하기</a>
+        {% endif %}
+        <br>
+      {% endfor %}
+    </div>
+
+    <div>
+      <h2>comming soon</h2>
+    </div>
+    {% for do in coming %}
       <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
       <a href="{% url 'viewTodo' pk=do.pk %}">{{do.status}}</a>
+      <a href="{% url 'viewTodo' pk=do.pk %}">
+        {% if do.priority|stringformat:"s" == '1' %}
+          urgent
+        {% elif do.priority|stringformat:"s" == '2' %}
+          average
+        {% else %}
+          flexible
+        {% endif %}
+      </a>
       <a href="{% url 'editTodo' pk=do.pk %}">수정하기</a>
       <a href="{% url 'deleteTodo' pk=do.pk %}">삭제하기</a>
       {% if do.status|stringformat:"s" == 'on process' %}
         <a href="{% url 'doneTodo' pk=do.pk %}">완료</a>
       {% else %}
-        <a href="{% url 'backTodo' pk=do.pk %}">완료 취소하기</a>  
+        <a href="{% url 'backTodo' pk=do.pk %}">완료 취소하기</a>
       {% endif %}
       <br>
     {% endfor %}
+
+
     <a href="{% url 'createTodo' %}">make a new todo list</a>
 </html>

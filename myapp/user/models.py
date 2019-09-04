@@ -11,10 +11,16 @@ class Todo(models.Model):
         ('on process', 'on process'),
         ('done', 'done'),
     )
+    priority_type = (
+        ('1','urgent'),
+        ('2','average'),
+        ('3','flexible')
+    )
     title = models.CharField(max_length=100)
     content = models.TextField()
     due_date = models.DateField(("Date"), default=datetime.date.today)
     status = models.TextField(choices=status_type, default='on process')
+    priority = models.TextField(choices=priority_type, default='average')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

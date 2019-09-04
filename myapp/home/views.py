@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from myapp.user.models import Todo
 from myapp.user.forms import TodoForm
+import datetime
 # Create your views here.
 def index(request):
-    todo = Todo.objects.order_by('created_at').reverse()
-    return render(request, 'index.html', {'todos':todo})
+    now=datetime.date.today()
+    #overdue = Todo.objects.filter(due_date__gt=now)
+    #todo = Todo.objects.order_by('created_at').reverse()
+    overdue = Todo.objects.filter(status='on process').filter(due_date__lt=now).order_by('priority')
+    today = Todo.objects.filter(due_date=now).order_by('priority')
+    coming = Todo.objects.filter(due_date__gt=now).order_by('priority')
+
+    return render(request, 'index.html', {'overdue':overdue, 'today':today, 'coming':coming})
 
 def createTodo(request):
     if request.method == 'POST':
