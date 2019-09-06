@@ -39,8 +39,8 @@
           </div>
         </nav>
       </header>
-      <div class="row h-100 ">
-        <div class="col-6" style="border:1px solid black;">
+      <div class="row h-75 mt-5">
+        <div class="col-5 border rounded border-dark ml-5">
           <h2>due today</h2>
           {% for do in today %}
             <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
@@ -64,9 +64,9 @@
             <br>
           {% endfor %}
         </div>
-        <div class="col-6">
+        <div class="col-5 ml-5">
           <div class="row h-100">
-            <div class="w-100" style="border:1px solid black;">
+            <div class="w-100 border rounded border-dark">
               <h2>overdue</h2>
               {% for do in overdue %}
                 <a href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
@@ -90,7 +90,7 @@
                 <br>
               {% endfor %}
             </div>
-            <div class="w-100" style="border:1px solid black;">
+            <div class="w-100 border rounded border-dark mt-3">
               <h2>comming soon</h2>
 
             {% for do in coming %}
@@ -119,7 +119,7 @@
           </div>
         </div>
       </div>
-      
+
 
 </body>
 </html>
