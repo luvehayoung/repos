@@ -112,6 +112,8 @@
               <a class="ml-3 mr-4" href="{% url 'viewTodo' pk=do.pk %}">{{do.title}}</a>
               {% if do.status|stringformat:"s" == 'on process' %}
                 <a href="{% url 'doneTodo' pk=do.pk %}">수행 완료</a>
+              {% else %}
+                <a href="{% url 'backTodo' pk=do.pk %}">수행 완료 취소하기</a>
               {% endif %}
               <br>
             {% endfor %}
